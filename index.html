@@ -34,14 +34,22 @@
         
         console.log(getSiblings(item3));
 
-        // 给item3添加三个class分别为 'a','b','c'
-        item3.classList.add('a')
-        item3.classList.add('b')
-        item3.classList.add('c')
-        // 上下两种方法都可 下面的更好用
-        var classes = ['a','b','c']
-        classes.forEach((value)=>item3.classList.add(value))
 
+
+        // 为了又可以添加class又能remove class true为添加 false为不添加
+        var classes = {
+            'a': true,
+            'b':false,
+            'c':true
+        }
+        for(let key in classes){
+            var value = classes[key]
+            if(value){
+                item3.classList.add(key);
+            }else{
+                item3.classList.remove(key)
+            }
+        }
 
 
 
