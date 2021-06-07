@@ -17,22 +17,33 @@
     <script>
 
         function getSiblings(node){
-        // 将目标节点item3的兄弟节点放入一个数组
-        var allChildren = node.parentNode.children
-         // 伪数组 一个哈希 没有push（）方法
-        // 理解array[array.length]
-        var array = { length: 0}
-        for(let i = 0 ; i < allChildren.length; i++){
-            if(allChildren[i] !== item3){
-                array[array.length] = allChildren[i]
-                 array.length += 1
+            // 将目标节点item3的兄弟节点放入一个数组
+            var allChildren = node.parentNode.children
+            // 伪数组 一个哈希 没有push（）方法
+            // 理解array[array.length]
+            var array = { length: 0}
+            for(let i = 0 ; i < allChildren.length; i++){
+                if(allChildren[i] !== item3){
+                    array[array.length] = allChildren[i]
+                    array.length += 1
+                }
             }
-        }
-        return array
+            return array
         }
 
         
         console.log(getSiblings(item3));
+
+        // 给item3添加三个class分别为 'a','b','c'
+        item3.classList.add('a')
+        item3.classList.add('b')
+        item3.classList.add('c')
+        // 上下两种方法都可 下面的更好用
+        var classes = ['a','b','c']
+        classes.forEach((value)=>item3.classList.add(value))
+
+
+
 
     </script>
 </body>
