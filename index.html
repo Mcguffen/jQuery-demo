@@ -19,7 +19,7 @@
     <script>
 
         function getSiblings(node) {
-            // 将目标节点item3的兄弟节点放入一个数组
+            // 将目标节点的兄弟节点放入一个数组
             var allChildren = node.parentNode.children
             // 伪数组 一个哈希 没有push（）方法
             // 理解array[array.length]
@@ -42,11 +42,8 @@
 
             for (let key in classes) {
                 var value = classes[key]
-                if (value) {
-                    node.classList.add(key);
-                } else {
-                    node.classList.remove(key)
-                }
+                var methodName = value ? 'add' : 'remove'
+                node.clasList[methodName](key)
             }
 
 
