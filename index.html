@@ -42,6 +42,8 @@
             return array
         }
         item2.getSiblings()
+        //         item2.getSiblings.call(item2)
+
         console.log(item2.getSiblings()); 
         console.dir(item2);
                 // 原型链
@@ -56,6 +58,8 @@
             }
         }
         item2.addClasses({'a':true,"b":false,"c":false})
+        //         item2.addClasses.call(item2,{'a':true,"b":false,"c":false})
+
         console.log(item2);
     </script>
 </body>
