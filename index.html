@@ -19,42 +19,43 @@
     <script>
 
 
-        // 为了让上面两个方法有关联性 因为这两个方法都是操作node
-        // 这种我认为好用的套路 也想让别人用 就是命名空间 命名后给别人用
-        // 我们就命名为ydom
-        window.ydom = {}
-        ydom.getSiblings= function(node) {
-            // 将目标节点的兄弟节点放入一个数组
-            var allChildren = node.parentNode.children
+
+        // 上面的问题是不好用 每次还要ydom.xx()每次都要ydom
+        //         ydom.getSiblings(item2) 
+        //  我想   item2.getSiblings()
+
+        // 原型链
+        // 给Node的共有属性添加一个getSibs()的方法 那么作为节点item2肯定有这个节点。
+        Node.prototype.getSiblings = function(){
+            // 将目标节点的兄弟节点放入一个数组 
+            // node 就是this this就是谁调用就是谁
+            var allChildren = this.parentNode.children
             // 伪数组 一个哈希 没有push（）方法
             // 理解array[array.length]
             var array = { length: 0 }
             for (let i = 0; i < allChildren.length; i++) {
-                if (allChildren[i] !== node) {
+                if (allChildren[i] !== this) {
                     array[array.length] = allChildren[i]
                     array.length += 1
                 }
             }
             return array
         }
-        ydom.addClasses =function addClasses(node, classes) {
+        item2.getSiblings()
+        console.log(item2.getSiblings()); 
+        console.dir(item2);
+                // 原型链
+        // 给Node的共有属性添加一个getSibs()的方法 那么作为节点item2肯定有这个节点。
+        Node.prototype.addClasses = function(classes){
             // 为了又可以添加class又能remove class true为添加 false为不添加
 
             for (let key in classes) {
                 var value = classes[key]
                 var methodName = value ? 'add' : 'remove'
-                node.classList[methodName](key)
- 
-                // obj.x() 
-                // obj['x']() 等价
+                this.classList[methodName](key)
             }
-
-
         }
-
-        ydom.getSiblings(item2)
-        console.log(ydom.getSiblings(item2));
-        ydom.addClasses(item2,{'a':false,'b':true,'c':true})
+        item2.addClasses({'a':true,"b":false,"c":false})
         console.log(item2);
     </script>
 </body>
