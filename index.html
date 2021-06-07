@@ -33,24 +33,33 @@
             return array
         }
 
-
-        console.log(getSiblings(item3));
-
-
         function addClasses(node, classes) {
             // 为了又可以添加class又能remove class true为添加 false为不添加
 
             for (let key in classes) {
                 var value = classes[key]
                 var methodName = value ? 'add' : 'remove'
-                node.clasList[methodName](key)
+                node.classList[methodName](key)
+ 
+                // obj.x() 
+                // obj['x']() 等价
             }
 
 
         }
         addClasses(item1, { 'a': true,'b': true, 'c': true })
 
+        // 为了让上面两个方法有关联性 因为这两个方法都是操作node
+        // 这种我认为好用的套路 也想让别人用 就是命名空间 命名后给别人用
+        // 我们就命名为ydom
+        window.ydom = {}
+        ydom.getSiblings = getSiblings
+        ydom.addClasses = addClasses
 
+        ydom.getSiblings(item2)
+        console.log(ydom.getSiblings(item2));
+        ydom.addClasses(item2,{'a':false,'b':true,'c':true})
+        console.log(item2);
     </script>
 </body>
 
