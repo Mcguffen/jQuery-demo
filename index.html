@@ -18,7 +18,12 @@
     </ul>
     <script>
 
-        function getSiblings(node) {
+
+        // 为了让上面两个方法有关联性 因为这两个方法都是操作node
+        // 这种我认为好用的套路 也想让别人用 就是命名空间 命名后给别人用
+        // 我们就命名为ydom
+        window.ydom = {}
+        ydom.getSiblings= function(node) {
             // 将目标节点的兄弟节点放入一个数组
             var allChildren = node.parentNode.children
             // 伪数组 一个哈希 没有push（）方法
@@ -32,8 +37,7 @@
             }
             return array
         }
-
-        function addClasses(node, classes) {
+        ydom.addClasses =function addClasses(node, classes) {
             // 为了又可以添加class又能remove class true为添加 false为不添加
 
             for (let key in classes) {
@@ -47,14 +51,6 @@
 
 
         }
-        addClasses(item1, { 'a': true,'b': true, 'c': true })
-
-        // 为了让上面两个方法有关联性 因为这两个方法都是操作node
-        // 这种我认为好用的套路 也想让别人用 就是命名空间 命名后给别人用
-        // 我们就命名为ydom
-        window.ydom = {}
-        ydom.getSiblings = getSiblings
-        ydom.addClasses = addClasses
 
         ydom.getSiblings(item2)
         console.log(ydom.getSiblings(item2));
