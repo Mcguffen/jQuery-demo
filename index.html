@@ -15,11 +15,11 @@
         <li id="item5">选项5</li>
     </ul>
     <script>
+
+        function getSiblings(node){
         // 将目标节点item3的兄弟节点放入一个数组
-        var allChildren = item3.parentNode.children
-        console.log(allChildren);
-        
-        // 伪数组 一个哈希 没有push（）方法
+        var allChildren = node.parentNode.children
+         // 伪数组 一个哈希 没有push（）方法
         // 理解array[array.length]
         var array = { length: 0}
         for(let i = 0 ; i < allChildren.length; i++){
@@ -28,7 +28,12 @@
                  array.length += 1
             }
         }
-        console.log(array);
+        return array
+        }
+
+        
+        console.log(getSiblings(item3));
+
     </script>
 </body>
 </html>
