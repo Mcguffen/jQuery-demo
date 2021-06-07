@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <ul>
         <li id="item1">选项1</li>
@@ -16,14 +18,14 @@
     </ul>
     <script>
 
-        function getSiblings(node){
+        function getSiblings(node) {
             // 将目标节点item3的兄弟节点放入一个数组
             var allChildren = node.parentNode.children
             // 伪数组 一个哈希 没有push（）方法
             // 理解array[array.length]
-            var array = { length: 0}
-            for(let i = 0 ; i < allChildren.length; i++){
-                if(allChildren[i] !== item3){
+            var array = { length: 0 }
+            for (let i = 0; i < allChildren.length; i++) {
+                if (allChildren[i] !== item3) {
                     array[array.length] = allChildren[i]
                     array.length += 1
                 }
@@ -31,30 +33,28 @@
             return array
         }
 
-        
+
         console.log(getSiblings(item3));
 
 
-        function addClasses(node,classes){
-        // 为了又可以添加class又能remove class true为添加 false为不添加
-        var classes = {
-                'a': true,
-                'b':false,
-                'c':true
-            }
-            for(let key in classes){
+        function addClasses(node, classes) {
+            // 为了又可以添加class又能remove class true为添加 false为不添加
+
+            for (let key in classes) {
                 var value = classes[key]
-                if(value){
+                if (value) {
                     node.classList.add(key);
-                }else{
+                } else {
                     node.classList.remove(key)
                 }
             }
 
 
         }
- 
+        addClasses(item1, { 'a': true,'b': true, 'c': true })
+
 
     </script>
 </body>
+
 </html>
