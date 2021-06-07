@@ -35,23 +35,25 @@
         console.log(getSiblings(item3));
 
 
-
+        function addClasses(node,classes){
         // 为了又可以添加class又能remove class true为添加 false为不添加
         var classes = {
-            'a': true,
-            'b':false,
-            'c':true
-        }
-        for(let key in classes){
-            var value = classes[key]
-            if(value){
-                item3.classList.add(key);
-            }else{
-                item3.classList.remove(key)
+                'a': true,
+                'b':false,
+                'c':true
             }
+            for(let key in classes){
+                var value = classes[key]
+                if(value){
+                    node.classList.add(key);
+                }else{
+                    node.classList.remove(key)
+                }
+            }
+
+
         }
-
-
+ 
 
     </script>
 </body>
