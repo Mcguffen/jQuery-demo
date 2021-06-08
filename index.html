@@ -25,6 +25,7 @@
         // 我们改进一下参数接受节点或者选择器
         // 那么怎么操作多个节点呢？
         // 干脆叫jQury好了
+
         window.jQuery = function(nodeOrSelector){
             let nodes = {}
             if(typeof nodeOrSelector === 'string'){
@@ -79,8 +80,9 @@
             return nodes
         }
 
-        
-        var nodeAll = jQuery('ul>li')
+        // 再来个缩写 alias
+        window.$ = jQuery
+        var nodeAll = $('ul>li')
         nodeAll.addClasses({'a':true,'b':false,'c':false})
         console.log(nodeAll);
         // 获取全部文本内容
