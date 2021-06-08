@@ -6,6 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{
+            background: #ddd;
+        }
+        .red{
+            color: red;
+        }
+        .blue{
+            color: blue;
+        }
+        .black{
+            color: black;
+        }
+    </style>
 </head>
 
 <body>
@@ -16,6 +30,8 @@
         <li id="item4">选项4</li>
         <li id="item5">选项5</li>
     </ul>
+    <button id="x">x</button>
+    
     <script>
         // 上面修改原型链的方法也不妥 现在问题是 别人也可以重修这个共有属性 大家相互覆盖
         // 那怎么办呢？ 上面大家都修改同一个Node的原型链 那么 我们新创建一个名叫别的Node不就行了？
@@ -77,13 +93,16 @@
                     return texts
                 }
             }
+
             return nodes
         }
 
         // 再来个缩写 alias
         window.$ = jQuery
         var nodeAll = $('ul>li')
-        nodeAll.addClasses({'a':true,'b':false,'c':false})
+        x.onclick = function(){
+            nodeAll.addClasses({'red':true,'blue':false,'black':false})
+        }
         console.log(nodeAll);
         // 获取全部文本内容
         nodeAll.text()
