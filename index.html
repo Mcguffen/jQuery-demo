@@ -23,48 +23,46 @@
         // 比如叫Yode行不行  我们自己弄一个构造函数 你给我一个节点我返回给你一个新的节点
         // 那么jQuery更厉害一点 参数不局限于节点也可以接受一个字符串，这个字符串可以是一个选择器
         // 我们改进一下参数接受节点或者选择器
+        // 那么怎么操作多个节点呢？
         window.Yode = function(nodeOrSelector){
-            let node
+            let nodes = {}
             if(typeof nodeOrSelector === 'string'){
-                node = document.querySelector(nodeOrSelector)
-                console.log(node);
-            }else{
-                node = nodeOrSelector
-            }
-            return {
-                getSiblings: function(){
-                // 这个时候不能用this了 this是yode1  我们操作的是node
-                var allChildren = node.parentNode.children
-                var array = { length: 0 }
-                for (let i = 0; i < allChildren.length; i++) {
-                    if (allChildren[i] !== node) {
-                        array[array.length] = allChildren[i]
-                        array.length += 1
-                    }
+                // 多个节点
+               let temp =  document.querySelectorAll(nodeOrSelector)// 多个节点 伪数组
+               for(let i=0;i<temp.length;i++){
+                nodes[i] = temp[i]
+               }
+               nodes.length = temp.length
+            }else if(nodeOrSelector instanceof Node){
+                // 只传1个节点 我们保证返回结果一致 也用伪数组
+                nodes = {
+                    0: nodeOrSelector,
+                    length: 1
                 }
-                return array
-                },
-                addClasses: function(classes){
+            }
+            // 
+            nodes.getSiblings = function(){
+ 
+            }
+            nodes.addClasses = function(classes){
                     for (let key in classes) {
                     var value = classes[key]
                     var methodName = value ? 'add' : 'remove'
-                    // 这里的this也改成node 因为this是yode1 而我们操作的是node
-                    node.classList[methodName](key)
-            }
+                    for(let i = 0; i<nodes.length; i++){
+                        nodes[i].classList[methodName](key)
+
+                    }
+
                 }
+
             }
+            return nodes
         }
         
-        var yode2 = Yode('ul > li:nth-child(2)')
-        yode2.getSiblings()
-        console.log(yode2);
- 
-        console.log(yode2.getSiblings());
+        var yodeAll = Yode('ul>li')
+        yodeAll.addClasses({'a':true,'b':false,'c':false})
+        console.log(yodeAll);
 
-        yode2.addClasses({'a':true,'b':false,'c':false})
-        // 之前我们是
-        // ydom.getSiblings(item1)
-        // ydom.addClasses(item1)
-        // 你说区别在哪里 不就是多了个构造函数 
+
     </script>
 </body>
