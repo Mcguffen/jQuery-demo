@@ -24,7 +24,8 @@
         // 那么jQuery更厉害一点 参数不局限于节点也可以接受一个字符串，这个字符串可以是一个选择器
         // 我们改进一下参数接受节点或者选择器
         // 那么怎么操作多个节点呢？
-        window.Yode = function(nodeOrSelector){
+        // 干脆叫jQury好了
+        window.jQuery = function(nodeOrSelector){
             let nodes = {}
             if(typeof nodeOrSelector === 'string'){
                 // 多个节点
@@ -79,14 +80,14 @@
         }
 
         
-        var yodeAll = Yode('ul>li')
-        yodeAll.addClasses({'a':true,'b':false,'c':false})
-        console.log(yodeAll);
+        var nodeAll = jQuery('ul>li')
+        nodeAll.addClasses({'a':true,'b':false,'c':false})
+        console.log(nodeAll);
         // 获取全部文本内容
-        yodeAll.text()
-        console.log(yodeAll.text());
+        nodeAll.text()
+        console.log(nodeAll.text());
         // 修改全部文本内容 是不是比刚才方便
-        yodeAll.text('hi')
+        nodeAll.text('hi')
 
 
     </script>
