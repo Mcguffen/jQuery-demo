@@ -58,21 +58,30 @@
             }
              // 批量获取节点们的文本
             nodes.getAllTexts = function(){
-                let texts = []
-                for(let i = 0; i<nodes.length; i++){
-                    texts.push(nodes[i].textContent)
-                }
-                return texts
+
             }
             // 批量修改textss
             nodes.setAllTexts = function(text){
-                let texts = []
-                for(let i = 0; i<nodes.length; i++){
-                    nodes[i].textContent = text
-                }
-                return texts
-            }
 
+            }
+            // 合并上面获取和修改全部节点文本内容的方法 不给参数就是获取全部文本内容 给参数就是修改全部文本内容
+            nodes.text = function(text){
+                // 没给值 就是获取
+                if(text === undefined){
+                    let texts = []
+                    for(let i = 0; i<nodes.length; i++){
+                        texts.push(nodes[i].textContent)
+                    }
+                    return texts
+                }else{
+                    // 给值就是修改
+                    let texts = []
+                    for(let i = 0; i<nodes.length; i++){
+                        nodes[i].textContent = text
+                    }
+                    return texts
+                }
+            }
             return nodes
         }
 
@@ -80,8 +89,11 @@
         var yodeAll = Yode('ul>li')
         yodeAll.addClasses({'a':true,'b':false,'c':false})
         console.log(yodeAll);
-        console.log(yodeAll.getAllTexts())
-        yodeAll.setAllTexts('hello')
+        // 获取全部文本内容
+        yodeAll.text()
+        console.log(yodeAll.text());
+        // 修改全部文本内容 是不是比刚才方便
+        yodeAll.text('hi')
 
 
     </script>
