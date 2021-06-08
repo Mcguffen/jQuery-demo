@@ -24,6 +24,7 @@
         // 那么jQuery更厉害一点 参数不局限于节点也可以接受一个字符串，这个字符串可以是一个选择器
         // 我们改进一下参数接受节点或者选择器
         window.Yode = function(nodeOrSelector){
+            let node
             if(typeof nodeOrSelector === 'string'){
                 node = document.querySelector(nodeOrSelector)
                 console.log(node);
