@@ -40,7 +40,7 @@
                     length: 1
                 }
             }
-            // 
+            // 特殊的 单独一个节点
             nodes.getSiblings = function(){
  
             }
@@ -56,12 +56,32 @@
                 }
 
             }
+             // 批量获取节点们的文本
+            nodes.getAllTexts = function(){
+                let texts = []
+                for(let i = 0; i<nodes.length; i++){
+                    texts.push(nodes[i].textContent)
+                }
+                return texts
+            }
+            // 批量修改textss
+            nodes.setAllTexts = function(text){
+                let texts = []
+                for(let i = 0; i<nodes.length; i++){
+                    nodes[i].textContent = text
+                }
+                return texts
+            }
+
             return nodes
         }
+
         
         var yodeAll = Yode('ul>li')
         yodeAll.addClasses({'a':true,'b':false,'c':false})
         console.log(yodeAll);
+        console.log(yodeAll.getAllTexts())
+        yodeAll.setAllTexts('hello')
 
 
     </script>
