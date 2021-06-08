@@ -20,8 +20,16 @@
         // 上面修改原型链的方法也不妥 现在问题是 别人也可以重修这个共有属性 大家相互覆盖
         // 那怎么办呢？ 上面大家都修改同一个Node的原型链 那么 我们新创建一个名叫别的Node不就行了？
         // 至于叫什么 叫啥都行 就反正不冲突就行
-        // 比如叫Yode行不行  我们自己弄一个构造函数 你给我一个节点我返回给你一个新的节点，新节点带有2个函数
-        window.Yode = function(node){
+        // 比如叫Yode行不行  我们自己弄一个构造函数 你给我一个节点我返回给你一个新的节点
+        // 那么jQuery更厉害一点 参数不局限于节点也可以接受一个字符串，这个字符串可以是一个选择器
+        // 我们改进一下参数接受节点或者选择器
+        window.Yode = function(nodeOrSelector){
+            if(typeof nodeOrSelector === 'string'){
+                node = document.querySelector(nodeOrSelector)
+                console.log(node);
+            }else{
+                node = nodeOrSelector
+            }
             return {
                 getSiblings: function(){
                 // 这个时候不能用this了 this是yode1  我们操作的是node
@@ -45,17 +53,17 @@
                 }
             }
         }
-        var yode1 = Yode(item1)
-        yode1.getSiblings()
-        console.log(yode1);
-        console.log(yode1.getSiblings()
-);
-        yode1.addClasses({'a':true,'b':false,'c':false})
+        
+        var yode2 = Yode('#item2')
+        yode2.getSiblings()
+        console.log(yode2);
+ 
+        console.log(yode2.getSiblings());
+
+        yode2.addClasses({'a':true,'b':false,'c':false})
         // 之前我们是
         // ydom.getSiblings(item1)
         // ydom.addClasses(item1)
         // 你说区别在哪里 不就是多了个构造函数 
     </script>
 </body>
-
-</html>
