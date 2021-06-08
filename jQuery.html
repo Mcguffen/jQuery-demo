@@ -7,8 +7,26 @@
     <title>我才是真的jQuery</title>
     <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
     <style>
+        body{
+            background: #ddd;
+        }
         .red{
             color: red;
+        }
+        .green{
+            color: green;
+        }
+        .yellow{
+            color: yellow;
+        }
+        .white{
+            color: white;
+        }
+        .black{
+            color: black;
+        }
+        .gray{
+            color: gray;
         }
     </style>
 </head>
@@ -19,6 +37,8 @@
         <li>选项3</li>
         <li>选项4</li>
         <li>选项5</li>
+        <li>选项6</li>
+
     </ul>
     <button id="x">x</button>
     <button id= 'y'>y</button>
@@ -32,9 +52,10 @@
         x.onclick = function(){
             nodes.toggleClass('red')
         }
+        var classes = ['red','blue','green','gray','yellow','white','black']
         y.onclick = function(){
             nodes.addClass(function(index,currentClass){
-                return 'item-' + index
+                return classes[index]
             })
         }
     </script>
