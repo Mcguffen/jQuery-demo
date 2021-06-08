@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我才是真的jQuery</title>
     <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-
+    <style>
+        .red{
+            color: red;
+        }
+    </style>
 </head>
 <body>    
     <ul>
@@ -16,10 +20,17 @@
         <li>选项4</li>
         <li>选项5</li>
     </ul>
+    <button id="x">点击</button>
     <script>
-         var nodes = jQuery('ul > li')
+        var nodes = jQuery('ul > li')
         console.log(nodes);
         nodes.text('hi')
+        console.dir(nodes);
+        // nodes.addClass('red')
+        // nodes.removeClass('red')
+        x.onclick = function(){
+            nodes.toggleClass('red')
+        }
     </script>
 </body>
 </html>
