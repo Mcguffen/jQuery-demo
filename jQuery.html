@@ -20,7 +20,8 @@
         <li>选项4</li>
         <li>选项5</li>
     </ul>
-    <button id="x">点击</button>
+    <button id="x">x</button>
+    <button id= 'y'>y</button>
     <script>
         var nodes = jQuery('ul > li')
         console.log(nodes);
@@ -30,6 +31,11 @@
         // nodes.removeClass('red')
         x.onclick = function(){
             nodes.toggleClass('red')
+        }
+        y.onclick = function(){
+            nodes.addClass(function(index,currentClass){
+                return 'item-' + index
+            })
         }
     </script>
 </body>
